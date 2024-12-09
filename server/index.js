@@ -7,17 +7,21 @@ const router = require('./routes');
 const Razorpay = require("razorpay");
 require("dotenv").config();
 const path = require("path");
+const crypto = require("crypto");
 
 const app = express();
 
 // CORS configuration
 
-app.use(cors({
-    origin: process.env.FRONTEND_URL,   // Frontend URL from .env file
-    credentials: true,                  // Allow credentials (cookies, etc.)
-    methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],  // Allowed methods as an array
-    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'] // Allowed headers as an array
-}));
+app.use(
+  cors({
+    origin: process.env.FRONTEND_URL, // Frontend URL from .env file
+    credentials: true, // Allow credentials (cookies, etc.)
+    methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"], // Allowed methods as an array
+    allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"], // Allowed headers as an array
+  })
+);
+
 
 // Allow preflight (OPTIONS) requests for CORS
 app.options('*', cors());
@@ -28,9 +32,6 @@ app.use(express.urlencoded({extended:false}));
 
 app.use("/api", router);
 
-//resolving dirname for ES module
-console.log("File path:", __filename); 
-console.log("Directory name:", __dirname); 
 
 //use the client app
 app.use(express.static(path.join(__dirname,'/client/build')))
@@ -57,10 +58,25 @@ app.post("/order",async (req,res)=>{
    res.json(order);
 })
 
+app.post("/order/validate",async (req,res)=>{
+  const {razorpay_order_id, razorpay_payment_id, razorpay_signature}= req.body;
+
+  const sha = crypto.createHmac("sha256", process.env.RAZORPAY_SECRET);
+  sha.update(`${razorpay_order_id}|${razorpay_payment_id}`);
+  const digest=sha.digest("hex");
+  if(digest !== razorpay_signature){
+    return res.status(400).json({msg:"Transaction not legit!"});
+  }
+ res.json({
+   msg: "Success",
+   orderId: razorpay_order_id,
+   paymentId: razorpay_payment_id,
+ });
+})
+
 // Connect to database and start the server
 connectDB().then(() => {
     app.listen(PORT, () => {
-        console.log("Connected to DB");
-        console.log("Server is running on PORT " + PORT);
+       "Server Initiated"
     });
 });

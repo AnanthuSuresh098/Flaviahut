@@ -3,7 +3,7 @@
 const productModel = require("../../models/productModel");
 
 // const deleteProductController = async (req, res) => {
-//     console.log("req.body", req.body);
+
  
 //     try {
 //         const { productId } = req.body;
@@ -46,10 +46,10 @@ const productModel = require("../../models/productModel");
 
 // module.exports = deleteProductController;
 const deleteProductController = async (req, res) => {
-    console.log("req.body", req.body);
+
     try {
         const  _id  = req.body._id; 
-        console.log("id",_id)
+     
         if (!_id) {
             return res.status(400).json({
                 message: "Product ID is required",

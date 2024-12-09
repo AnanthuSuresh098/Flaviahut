@@ -13,6 +13,7 @@ const createOrder = async (req, res) => {
       orderDate,
       orderUpdateDate,
       cartId,
+      paymentId
     } = req.body;
 
     const newlyCreatedOrder = new Order({
@@ -23,7 +24,7 @@ const createOrder = async (req, res) => {
       orderStatus,
       totalAmount,
       orderDate,
-      orderUpdateDate,
+      orderUpdateDate,paymentId
     });
 
     await newlyCreatedOrder.save();
@@ -33,7 +34,7 @@ const createOrder = async (req, res) => {
       orderId: newlyCreatedOrder._id,
     });
   } catch (e) {
-    console.log(e);
+
     res.status(500).json({
       success: false,
       message: "Some error occurred!",
@@ -60,7 +61,7 @@ const getAllOrdersByUser = async (req, res) => {
       data: orders,
     });
   } catch (e) {
-    console.log(e);
+   
     res.status(500).json({
       success: false,
       message: "Some error occured!",
@@ -86,7 +87,7 @@ const getOrderDetails = async (req, res) => {
       data: order,
     });
   } catch (e) {
-    console.log(e);
+   
     res.status(500).json({
       success: false,
       message: "Some error occured!",

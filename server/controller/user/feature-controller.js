@@ -6,8 +6,7 @@ const addFeatureImage = async (req, res) => {
   try {
     const { image } = req.body;
 
-    console.log(image, "image");
-
+   
     const featureImages = new Feature({
       image,
     });
@@ -19,7 +18,6 @@ const addFeatureImage = async (req, res) => {
       data: featureImages,
     });
   } catch (e) {
-    console.log(e);
     res.status(500).json({
       success: false,
       message: "Some error occured!",
@@ -36,7 +34,7 @@ const getFeatureImages = async (req, res) => {
       data: images,
     });
   } catch (e) {
-    console.log(e);
+  
     res.status(500).json({
       success: false,
       message: "Some error occured!",
@@ -68,7 +66,7 @@ const deleteFeatureImage = async (req, res) => {
       message: "Feature image deleted successfully",
     });
   } catch (error) {
-    console.error("Error deleting feature image:", error);
+  
     return res.status(500).json({
       success: false,
       message: "Error deleting feature image",

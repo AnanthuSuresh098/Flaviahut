@@ -2,7 +2,7 @@ const Address = require("../../models/Address");
 
 const addAddress = async (req, res) => {
   try {
-    const { userId, address, city, pincode, phone, notes ,email} = req.body;
+    const { userId, address, city, pincode, phone, state, notes ,email} = req.body;
 
     if (!userId || !address || !city || !pincode || !phone ) {
       return res.status(400).json({
@@ -18,6 +18,7 @@ const addAddress = async (req, res) => {
       pincode,
       notes,
       phone,
+      state,
       email
     });
 
@@ -28,7 +29,7 @@ const addAddress = async (req, res) => {
       data: newlyCreatedAddress,
     });
   } catch (e) {
-    console.log(e);
+
     res.status(500).json({
       success: false,
       message: "Error",
@@ -53,7 +54,7 @@ const fetchAllAddress = async (req, res) => {
       data: addressList,
     });
   } catch (e) {
-    console.log(e);
+
     res.status(500).json({
       success: false,
       message: "Error",
@@ -94,7 +95,7 @@ const editAddress = async (req, res) => {
       data: address,
     });
   } catch (e) {
-    console.log(e);
+
     res.status(500).json({
       success: false,
       message: "Error",
@@ -126,7 +127,7 @@ const deleteAddress = async (req, res) => {
       message: "Address deleted successfully",
     });
   } catch (e) {
-    console.log(e);
+
     res.status(500).json({
       success: false,
       message: "Error",
