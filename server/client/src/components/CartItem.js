@@ -131,7 +131,7 @@ const CartItem = ({ data, fetchData, address, delivery }) => {
                           className="w-full bg-white  my-4  rounded flex  shadow-md  rounded  p-1 "
                         >
                           <div className="flex gap-2 justify-between w-full">
-                            <div className="w-20 h-20 bg-slate-200">
+                            <div className="w-20 h-14 md:h-20 bg-slate-200">
                               <img
                                 src={product?.productId?.productImage[0]}
                                 className="w-full h-full "

@@ -86,7 +86,7 @@ if(cartItems&&cartItems.length!==0){
  
 
   var options = {
-    key: "rzp_test_kUv7w149LBlg4O",
+    key: "rzp_live_vIwnHnhaeU23Fj",
     amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
     currency,
     name: "Flavia Hut", //your business name
@@ -104,8 +104,8 @@ if(cartItems&&cartItems.length!==0){
         headers: { "content-type": "application/json" },
       });
       const jsonRes = await validateRes.json();
-      if(jsonRes.msg==="Success"){
-         handleCheckout(e, jsonRes);
+      if (jsonRes.msg === "Success") {
+        handleCheckout(e, jsonRes);
       }
     },
     prefill: {

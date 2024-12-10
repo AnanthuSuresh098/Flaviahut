@@ -197,7 +197,7 @@ const showNav = () => {
                               key={product?._id + "Add To Cart Loading"}
                               className="w-full bg-white  my-4  rounded flex  shadow-md  rounded  ">
                               <div className="flex gap-2 justify-between w-full">
-                                <div className="w-20 h-20 bg-slate-200">
+                                <div className="w-20 md:h-20 h-12 bg-slate-200">
                                   <img
                                     src={product?.productId?.productImage[0]}
                                     className="w-full h-full "
