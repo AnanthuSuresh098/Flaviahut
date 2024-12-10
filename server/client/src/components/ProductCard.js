@@ -41,7 +41,7 @@ const ProductCard = ({ product, handleAddToCart, wishlistHandler }) => {
   
   return (
     // <div className="w-full min-w-[230px] md:min-w-[220px] max-w-[230px] md:max-w-[220px] h-[310px] bg-white rounded-md shadow-lg overflow-hidden relative hover:scale-105 transition-transform rounded hover:border hover:border-[#AA0000] border border-[#EDEDED]">
-    <div className="w-full min-w-[190px] md:min-w-[220px] max-w-[190px] md:max-w-[220px] h-[250px] md:h-[310px] bg-white rounded-md shadow-lg overflow-hidden relative md:hover:scale-105 transition-transform rounded md:hover:border md:hover:border-[#AA0000] border border-[#EDEDED]">
+    <div className="w-full min-w-[190px] md:min-w-[220px] max-w-[190px] md:max-w-[220px] h-[300px] md:h-[370px] bg-white rounded-md shadow-lg overflow-hidden relative md:hover:scale-105 transition-transform rounded md:hover:border md:hover:border-[#AA0000] border border-[#EDEDED]">
       <Link to={"/product/" + product?._id}>
         {/* Discount Label */}
         <div className="absolute right-0 top-0 bg-green-600 text-white text-[8px] font-bold p-1 rounded-md h-[35px] w-[40px]">
@@ -50,7 +50,7 @@ const ProductCard = ({ product, handleAddToCart, wishlistHandler }) => {
         </div>
 
         {/* Product Image */}
-        <div className="bg-slate-200 h-[180px] min-w-[180px] vertical-product-card">
+        <div className="bg-slate-200 h-[250px] min-w-[180px] vertical-product-card">
           <img
             src={product?.productImage[0]}
             className="object-fill h-full w-full"
